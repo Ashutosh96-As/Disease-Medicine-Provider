@@ -1,0 +1,12 @@
+.container {
+  max-width: 1000px;
+}
+
+table td,
+table th {
+  vertical-align: middle;
+}
+
+input::placeholder {
+  color: #999;
+}

@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services - Disease Medicine Provider</title>
+    <link rel="stylesheet" href="Style.css">
+<style>
+    .services-container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+.service-card {
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    padding: 2rem;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+.service-icon {
+    font-size: 2.5rem;
+    color: #4CAF50;
+    margin-bottom: 1rem;
+}
+.service-card h3 {
+    color: #4CAF50;
+    margin-bottom: 1rem;
+}
+.service-card p {
+    margin-bottom: 1.5rem;
+    color: #666;
+}
+.service-features {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 1.5rem;
+}
+.service-features li {
+    margin-bottom: 0.5rem;
+    padding-left: 1.5rem;
+    position: relative;
+}
+.service-features li::before {
+    content: '✓';
+    color: #4CAF50;
+    position: absolute;
+    left: 0;
+}
+.service-button {
+    display: inline-block;
+    padding: 0.8rem 1.5rem;
+    background-color: #4CAF50;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+.service-button:hover {
+    background-color: #45a049;
+}
+.service-section {
+    margin-bottom: 3rem;
+}
+.service-section h2 {
+    color: #4CAF50;
+    margin-bottom: 1rem;
+    border-bottom: 2px solid #4CAF50;
+    padding-bottom: 0.5rem;
+}
+.pricing-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+.pricing-table th, .pricing-table td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+.pricing-table th {
+    background-color: #4CAF50;
+    color: white;
+}
+.pricing-table tr:hover {
+    background-color: #f5f5f5;
+}
+.price {
+    font-weight: bold;
+    color: #4CAF50;
+}
+.service-intro {
+    text-align: center;
+    color: #666;
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+}
+.service-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1rem;
+}
+.service-rating {
+    color: #ffd700;
+    font-weight: bold;
+}
+/* Add Back to Home button styles */
+.back-to-home {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 30px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    z-index: 1000;
+}
+
+.back-to-home:hover {
+    background: #45a049;
+    transform: translateX(-5px);
+}
+
+.back-to-home::before {
+    content: '←';
+    font-size: 1.2em;
+}
+
+@media (max-width: 768px) {
+    .back-to-home {
+        top: 10px;
+        left: 10px;
+        padding: 8px 15px;
+        font-size: 0.9em;
+    }
+}
+</style>
+</head>
+<body>
+    <a href="HOME.HTML" class="back-to-home">Back to Home</a>
+    <header>
+        <h1>Disease Medicine Provider</h1>
+    </header>
+    <nav>
+        <a href="HOME.HTML">Home</a>
+        <a href="about.html">About Us</a>
+        <a href="services.html">Services</a>
+        <a href="testimonials.html">Testimonials</a>
+        <a href="contact.html">Contact us</a>
+        <a href="login.html" target="_blank">Login</a>
+        <a href="signup.html" target="_blank">Signup</a>
+    </nav>
+
+    <div class="services-container">
+        <div class="service-section">
+            <h2>Our Services</h2>
+            <p class="service-intro">Experience healthcare excellence with our comprehensive range of medical services designed for your well-being.</p>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">🏥</div>
+                    <h3>Doctor Appointments</h3>
+                    <p>Book appointments with our experienced doctors for in-person consultations.</p>
+                    <ul class="service-features">
+                        <li>24/7 Online Booking</li>
+                        <li>Multiple Specialties</li>
+                        <li>Flexible Scheduling</li>
+                        <li>Follow-up Care</li>
+                        <li>Video Consultation Option</li>
+                        <li>Emergency Booking</li>
+                    </ul>
+                    <div class="service-actions">
+                        <a href="appointment.html" class="service-button" target="_blank">Book Now</a>
+                        <span class="service-rating">⭐ 4.9/5</span>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">💻</div>
+                    <h3>Online Consultation</h3>
+                    <p>Connect with doctors virtually for remote medical advice and consultations.</p>
+                    <ul class="service-features">
+                        <li>Video Consultations</li>
+                        <li>Chat Support</li>
+                        <li>Prescription Services</li>
+                        <li>Secure Platform</li>
+                        <li>24/7 Availability</li>
+                        <li>Instant Connection</li>
+                    </ul>
+                    <div class="service-actions">
+                        <a href="consultation.html" class="service-button" target="_blank">Start Consultation</a>
+                        <span class="service-rating">⭐ 4.8/5</span>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">💊</div>
+                    <h3>Medicine Delivery</h3>
+                    <p>Get prescribed medicines delivered to your doorstep with our fast delivery service.</p>
+                    <ul class="service-features">
+                        <li>Same Day Delivery</li>
+                        <li>Genuine Products</li>
+                        <li>Prescription Verification</li>
+                        <li>Secure Payment</li>
+                        <li>Real-time Tracking</li>
+                        <li>Scheduled Delivery</li>
+                    </ul>
+                    <div class="service-actions">
+                        <a href="delivery.html" class="service-button" target="_blank">Order Medicines</a>
+                        <span class="service-rating">⭐ 4.9/5</span>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">📱</div>
+                    <h3>Health Records</h3>
+                    <p>Access and manage your medical records and prescriptions securely online.</p>
+                    <ul class="service-features">
+                        <li>Digital Records</li>
+                        <li>Prescription History</li>
+                        <li>Lab Reports</li>
+                        <li>Secure Storage</li>
+                    </ul>
+                    <a href="#" class="service-button" target="_blank">View Records</a>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">🏥</div>
+                    <h3>Emergency Care</h3>
+                    <p>24/7 emergency medical assistance and ambulance services.</p>
+                    <ul class="service-features">
+                        <li>24/7 Support</li>
+                        <li>Quick Response</li>
+                        <li>Ambulance Service</li>
+                        <li>Emergency Care</li>
+                    </ul>
+                    <a href="#" class="service-button" target="_blank">Emergency Contact</a>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">💉</div>
+                    <h3>Lab Tests</h3>
+                    <p>Book laboratory tests and get results delivered to your email.</p>
+                    <ul class="service-features">
+                        <li>Home Sample Collection</li>
+                        <li>Online Reports</li>
+                        <li>Expert Analysis</li>
+                        <li>Quick Turnaround</li>
+                    </ul>
+                    <a href="#" class="service-button" target="_blank">Book Tests</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="service-section">
+            <h2>Service Pricing</h2>
+            <table class="pricing-table">
+                <thead>
+                    <tr>
+                        <th>Service</th>
+                        <th>Description</th>
+                        <th>Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>General Consultation</td>
+                        <td>In-person doctor consultation</td>
+                        <td class="price">$50</td>
+                    </tr>
+                    <tr>
+                        <td>Online Consultation</td>
+                        <td>Video consultation with doctor</td>
+                        <td class="price">$30</td>
+                    </tr>
+                    <tr>
+                        <td>Emergency Care</td>
+                        <td>24/7 emergency medical assistance</td>
+                        <td class="price">$100</td>
+                    </tr>
+                    <tr>
+                        <td>Lab Tests</td>
+                        <td>Basic health checkup package</td>
+                        <td class="price">$75</td>
+                    </tr>
+                    <tr>
+                        <td>Medicine Delivery</td>
+                        <td>Same-day delivery service</td>
+                        <td class="price">$10</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Disease Medicine Provider | All Rights Reserved</p>
+    </footer>
+
+    <script>
+        // Add animation to service cards on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = 1;
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        });
+
+        document.querySelectorAll('.service-card').forEach(card => {
+            card.style.opacity = 0;
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html> 

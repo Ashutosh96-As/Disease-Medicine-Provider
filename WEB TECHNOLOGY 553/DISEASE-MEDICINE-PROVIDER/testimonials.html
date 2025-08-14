@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Testimonials - Disease Medicine Provider</title>
+    <link rel="stylesheet" href="Style.css">
+    <style>
+        .testimonials-container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+.testimonials-section {
+    margin-bottom: 3rem;
+}
+.testimonials-section h2 {
+    color: #4CAF50;
+    margin-bottom: 1rem;
+    border-bottom: 2px solid #4CAF50;
+    padding-bottom: 0.5rem;
+    text-align: center;
+}
+.testimonials-slider {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+.testimonials-track {
+    display: flex;
+    transition: transform 0.5s ease;
+}
+.testimonial-card {
+    min-width: 100%;
+    padding: 2rem;
+    box-sizing: border-box;
+}
+.testimonial-content {
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    padding: 2rem;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    text-align: center;
+}
+.testimonial-avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin: 0 auto 1rem;
+    object-fit: cover;
+}
+.testimonial-name {
+    color: #4CAF50;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+.testimonial-role {
+    color: #666;
+    margin-bottom: 1rem;
+}
+.testimonial-text {
+    font-style: italic;
+    color: #333;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+.rating {
+    color: #ffd700;
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+}
+.slider-controls {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+.slider-button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.slider-button:hover {
+    background-color: #45a049;
+}
+.slider-dots {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+.dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #ddd;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.dot.active {
+    background-color: #4CAF50;
+}
+.testimonial-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+    text-align: center;
+}
+.stat-card {
+    padding: 1.5rem;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+.stat-number {
+    font-size: 2.5rem;
+    color: #4CAF50;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+.stat-label {
+    color: #666;
+}
+.testimonial-filters {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin: 2rem 0;
+}
+.filter-btn {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    background-color: #f0f0f0;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.filter-btn.active {
+    background-color: #4CAF50;
+    color: white;
+}
+.testimonial-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+.testimonial-info {
+    flex: 1;
+}
+.verified-badge {
+    background-color: #4CAF50;
+    color: white;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    margin-top: 0.5rem;
+    display: inline-block;
+}
+.testimonial-date {
+    color: #666;
+    font-size: 0.9rem;
+    margin-top: 1rem;
+    text-align: right;
+}
+.testimonial-card {
+    transform: scale(0.95);
+    transition: transform 0.3s ease;
+    opacity: 0.7;
+}
+.testimonial-card.active {
+    transform: scale(1);
+    opacity: 1;
+}
+.testimonials {
+    padding: 4rem 2rem;
+    background: #f9f9f9;
+}
+.testimonial-card {
+    background: white;
+    border-radius: 15px;
+    padding: 2rem;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    display: flex;
+    align-items: flex-start;
+    gap: 2rem;
+    margin: 1rem;
+    transition: transform 0.3s ease;
+}
+.testimonial-card:hover {
+    transform: translateY(-5px);
+}
+.testimonial-avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #4CAF50;
+}
+.testimonial-content {
+    flex: 1;
+}
+.testimonial-meta {
+    display: flex;
+    gap: 1rem;
+    margin: 0.5rem 0;
+}
+.verified {
+    color: #4CAF50;
+    font-weight: 600;
+}
+.service {
+    background: #e8f5e9;
+    color: #2e7d32;
+    padding: 0.25rem 0.75rem;
+    border-radius: 15px;
+    font-size: 0.9rem;
+}
+.date {
+    color: #666;
+    font-size: 0.9rem;
+    display: block;
+    margin-top: 1rem;
+}
+.testimonial-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+.testimonial-controls button {
+    background: #4CAF50;
+    color: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.testimonial-controls button:hover {
+    background: #2e7d32;
+    transform: scale(1.1);
+}
+.dots {
+    display: flex;
+    gap: 0.5rem;
+}
+.dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #ddd;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.dot.active {
+    background: #4CAF50;
+    transform: scale(1.2);
+}
+@media (max-width: 768px) {
+    .testimonial-card {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 1rem;
+    }
+    .testimonial-meta {
+        justify-content: center;
+    }
+}
+/* Add Back to Home button styles */
+.back-to-home {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 30px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    z-index: 1000;
+}
+
+.back-to-home:hover {
+    background: #45a049;
+    transform: translateX(-5px);
+}
+
+.back-to-home::before {
+    content: '←';
+    font-size: 1.2em;
+}
+
+@media (max-width: 768px) {
+    .back-to-home {
+        top: 10px;
+        left: 10px;
+        padding: 8px 15px;
+        font-size: 0.9em;
+    }
+}
+    </style>
+</head>
+<body>
+    <a href="HOME.HTML" class="back-to-home">Back to Home</a>
+    <header>
+        <h1>Disease Medicine Provider</h1>
+    </header>
+    <nav>
+        <a href="HOME.HTML">Home</a>
+        <a href="about.html">About Us</a>
+        <a href="services.html">Services</a>
+        <a href="testimonials.html">Testimonials</a>
+        <a href="contact.html">Contact us</a>
+        <a href="login.html" target="_blank">Login</a>
+        <a href="signup.html" target="_blank">Signup</a>
+    </nav>
+
+    <div class="testimonials-container">
+        <div class="testimonials-section">
+            <h2>What Our Patients Say</h2>
+            <div class="testimonial-filters">
+                <button class="filter-btn active" data-filter="all">All Reviews</button>
+                <button class="filter-btn" data-filter="consultation">Consultation</button>
+                <button class="filter-btn" data-filter="delivery">Medicine Delivery</button>
+                <button class="filter-btn" data-filter="emergency">Emergency Care</button>
+            </div>
+            <div class="testimonial-slider">
+                <div class="testimonial-card">
+                    <img src="https://img.freepik.com/free-photo/portrait-white-man-isolated_53876-40306.jpg" alt="John Smith" class="testimonial-avatar">
+                    <div class="testimonial-content">
+                        <h3>John Smith</h3>
+                        <div class="testimonial-meta">
+                            <span class="verified">✓ Verified Patient</span>
+                            <span class="service">Online Consultation</span>
+                        </div>
+                        <div class="rating">★★★★★</div>
+                        <p>"Excellent service! The online consultation was very convenient and the doctor was very thorough in explaining everything."</p>
+                        <span class="date">March 15, 2024</span>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <img src="https://img.freepik.com/free-photo/cheerful-indian-woman-smiling-closeup-portrait_1262-1947.jpg" alt="Sarah Johnson" class="testimonial-avatar">
+                    <div class="testimonial-content">
+                        <h3>Sarah Johnson</h3>
+                        <div class="testimonial-meta">
+                            <span class="verified">✓ Verified Patient</span>
+                            <span class="service">Medicine Delivery</span>
+                        </div>
+                        <div class="rating">★★★★★</div>
+                        <p>"Fast delivery and great customer service. The medicines were properly packed and delivered on time."</p>
+                        <span class="date">March 10, 2024</span>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <img src="https://img.freepik.com/free-photo/senior-man-face-portrait-wearing-glasses_53876-148154.jpg" alt="Robert Wilson" class="testimonial-avatar">
+                    <div class="testimonial-content">
+                        <h3>Robert Wilson</h3>
+                        <div class="testimonial-meta">
+                            <span class="verified">✓ Verified Patient</span>
+                            <span class="service">Doctor Consultation</span>
+                        </div>
+                        <div class="rating">★★★★★</div>
+                        <p>"The doctor was very patient and knowledgeable. I felt well taken care of throughout my treatment."</p>
+                        <span class="date">March 5, 2024</span>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-controls">
+                <button class="prev">←</button>
+                <div class="dots">
+                    <span class="dot active"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                </div>
+                <button class="next">→</button>
+            </div>
+        </div>
+
+        <div class="testimonial-stats">
+            <div class="stat-card">
+                <div class="stat-number">10,000+</div>
+                <div class="stat-label">Happy Patients</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">50+</div>
+                <div class="stat-label">Expert Doctors</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">4.8</div>
+                <div class="stat-label">Average Rating</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">24/7</div>
+                <div class="stat-label">Customer Support</div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Disease Medicine Provider | All Rights Reserved</p>
+    </footer>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.testimonial-card');
+        const track = document.querySelector('.testimonial-slider');
+        const dotsContainer = document.querySelector('.dots');
+
+        // Create dots
+        slides.forEach((_, index) => {
+            const dot = document.createElement('span');
+            dot.classList.add('dot');
+            if (index === 0) dot.classList.add('active');
+            dot.addEventListener('click', () => goToSlide(index));
+            dotsContainer.appendChild(dot);
+        });
+
+        function updateSlider() {
+            track.style.transform = `translateX(-${currentSlide * 100}%)`;
+            document.querySelectorAll('.dot').forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentSlide);
+            });
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            updateSlider();
+        }
+
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+            updateSlider();
+        }
+
+        function goToSlide(index) {
+            currentSlide = index;
+            updateSlider();
+        }
+
+        // Auto-rotate slides
+        setInterval(nextSlide, 5000);
+
+        // Add animation to stat cards on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = 1;
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        });
+
+        document.querySelectorAll('.stat-card').forEach(card => {
+            card.style.opacity = 0;
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            observer.observe(card);
+        });
+
+        // Add filter functionality
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                const filter = btn.dataset.filter;
+                document.querySelectorAll('.testimonial-card').forEach(card => {
+                    if (filter === 'all' || card.dataset.category === filter) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html> 

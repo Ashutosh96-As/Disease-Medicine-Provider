@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medicine Delivery - Disease Medicine Provider</title>
+    <link rel="stylesheet" href="Style.css">
+    <style>
+    .delivery-container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+.form-group {
+    margin-bottom: 1rem;
+}
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+}
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+.submit-btn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+}
+.submit-btn:hover {
+    background-color: #45a049;
+}
+.medicine-search {
+    margin-bottom: 1rem;
+}
+.medicine-search input {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+.medicine-list {
+    max-height: 300px;
+    overflow-y: auto;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+}
+.medicine-item {
+    padding: 0.5rem;
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+}
+.medicine-item:hover {
+    background-color: #f0f0f0;
+}
+.medicine-item.selected {
+    background-color: #e8f5e9;
+}
+.cart {
+    margin-top: 1rem;
+    padding: 1rem;
+    background-color: #f0f0f0;
+    border-radius: 4px;
+}
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+}
+.cart-total {
+    margin-top: 1rem;
+    font-weight: bold;
+    text-align: right;
+}
+.quantity-control {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.quantity-btn {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+}
+.quantity-btn:hover {
+    background-color: #45a049;
+}
+.back-home {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    padding: 10px 20px;
+    background-color: #2c3e50;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    z-index: 1000;
+    transition: all 0.3s ease;
+}
+
+.back-home:hover {
+    background-color: #34495e;
+    transform: translateY(-2px);
+}
+    </style>
+</head>
+<body>
+    <a href="HOME.HTML" class="back-home">← Back to Home</a>
+    <header>
+        <h1>Disease Medicine Provider</h1>
+    </header>
+    <nav>
+        <a href="HOME.HTML">Home</a>
+        <a href="about.html">About Us</a>
+        <a href="services.html">Services</a>
+        <a href="testimonials.html">Testimonials</a>
+        <a href="contact.html">Contact us</a>
+        <a href="login.html" target="_blank">Login</a>
+        <a href="signup.html" target="_blank">Signup</a>
+    </nav>
+
+    <div class="delivery-container">
+        <h2>Medicine Delivery</h2>
+        
+        <div class="medicine-search">
+            <input type="text" id="searchMedicine" placeholder="Search for medicines..." onkeyup="searchMedicines()">
+        </div>
+        
+        <div class="medicine-list" id="medicineList">
+            <!-- Medicines will be loaded dynamically -->
+        </div>
+        
+        <div class="cart" id="cart">
+            <h3>Your Cart</h3>
+            <div id="cartItems">
+                <!-- Cart items will be added here -->
+            </div>
+            <div class="cart-total" id="cartTotal">Total: $0.00</div>
+        </div>
+        
+        <form id="deliveryForm" onsubmit="return handleDelivery(event)">
+            <div class="form-group">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" name="phone" required>
+            </div>
+            <div class="form-group">
+                <label for="address">Delivery Address</label>
+                <textarea id="address" name="address" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="paymentMethod">Payment Method</label>
+                <select id="paymentMethod" name="paymentMethod" required>
+                    <option value="">Select payment method</option>
+                    <option value="credit">Credit Card</option>
+                    <option value="debit">Debit Card</option>
+                    <option value="upi">UPI</option>
+                    <option value="cod">Cash on Delivery</option>
+                </select>
+            </div>
+            <button type="submit" class="submit-btn">Place Order</button>
+        </form>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Disease Medicine Provider | All Rights Reserved</p>
+    </footer>
+
+    <script>
+        // Medicine data
+        const medicines = [
+            { id: 1, name: "Paracetamol", price: 5.99, category: "Pain Relief" },
+            { id: 2, name: "Amoxicillin", price: 12.99, category: "Antibiotics" },
+            { id: 3, name: "Omeprazole", price: 8.99, category: "Digestive Health" },
+            { id: 4, name: "Metformin", price: 15.99, category: "Diabetes" },
+            { id: 5, name: "Atorvastatin", price: 18.99, category: "Cholesterol" },
+            { id: 6, name: "Lisinopril", price: 9.99, category: "Blood Pressure" },
+            { id: 7, name: "Aspirin", price: 4.99, category: "Pain Relief" },
+            { id: 8, name: "Cetirizine", price: 6.99, category: "Allergies" },
+            { id: 9, name: "Vitamin D3", price: 7.99, category: "Supplements" },
+            { id: 10, name: "Ibuprofen", price: 5.99, category: "Pain Relief" }
+        ];
+        
+        // Cart data
+        let cart = [];
+        
+        // Render medicines
+        function renderMedicines(searchTerm = '') {
+            const filteredMedicines = searchTerm 
+                ? medicines.filter(medicine => 
+                    medicine.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                    medicine.category.toLowerCase().includes(searchTerm.toLowerCase())
+                )
+                : medicines;
+                
+            const medicineList = document.getElementById('medicineList');
+            medicineList.innerHTML = '';
+            
+            filteredMedicines.forEach(medicine => {
+                const medicineItem = document.createElement('div');
+                medicineItem.className = 'medicine-item';
+                medicineItem.innerHTML = `
+                    <strong>${medicine.name}</strong> - $${medicine.price.toFixed(2)} (${medicine.category})
+                `;
+                medicineItem.addEventListener('click', () => addToCart(medicine));
+                medicineList.appendChild(medicineItem);
+            });
+        }
+        
+        // Search medicines
+        function searchMedicines() {
+            const searchTerm = document.getElementById('searchMedicine').value;
+            renderMedicines(searchTerm);
+        }
+        
+        // Add to cart
+        function addToCart(medicine) {
+            const existingItem = cart.find(item => item.id === medicine.id);
+            
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({ ...medicine, quantity: 1 });
+            }
+            
+            updateCart();
+        }
+        
+        // Update cart display
+        function updateCart() {
+            const cartItems = document.getElementById('cartItems');
+            const cartTotal = document.getElementById('cartTotal');
+            
+            cartItems.innerHTML = '';
+            let total = 0;
+            
+            cart.forEach(item => {
+                const itemTotal = item.price * item.quantity;
+                total += itemTotal;
+                
+                const cartItem = document.createElement('div');
+                cartItem.className = 'cart-item';
+                cartItem.innerHTML = `
+                    <span>${item.name} x ${item.quantity}</span>
+                    <div class="quantity-control">
+                        <button class="quantity-btn" onclick="updateQuantity(${item.id}, ${item.quantity - 1})">-</button>
+                        <span>${item.quantity}</span>
+                        <button class="quantity-btn" onclick="updateQuantity(${item.id}, ${item.quantity + 1})">+</button>
+                        <span>$${itemTotal.toFixed(2)}</span>
+                    </div>
+                `;
+                cartItems.appendChild(cartItem);
+            });
+            
+            cartTotal.textContent = `Total: $${total.toFixed(2)}`;
+        }
+        
+        // Update quantity
+        function updateQuantity(id, newQuantity) {
+            if (newQuantity <= 0) {
+                cart = cart.filter(item => item.id !== id);
+            } else {
+                const item = cart.find(item => item.id === id);
+                if (item) {
+                    item.quantity = newQuantity;
+                }
+            }
+            
+            updateCart();
+        }
+        
+        // Handle delivery form submission
+        function handleDelivery(event) {
+            event.preventDefault();
+            
+            if (cart.length === 0) {
+                alert('Your cart is empty. Please add medicines first.');
+                return false;
+            }
+            
+            const formData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                address: document.getElementById('address').value,
+                paymentMethod: document.getElementById('paymentMethod').value,
+                cart: cart
+            };
+            
+            // Here you would typically send the form data to a server
+            alert('Order placed successfully! We will deliver your medicines soon.');
+            
+            // Clear the form and cart
+            document.getElementById('deliveryForm').reset();
+            cart = [];
+            updateCart();
+            
+            return false;
+        }
+        
+        // Initial render
+        renderMedicines();
+    </script>
+</body>
+</html> 

@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health Education - Disease Medicine Provider</title>
+    <link rel="stylesheet" href="Style.css">
+   <style>
+    .back-home {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    padding: 10px 20px;
+    background-color: #2bb4af;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    z-index: 1000;
+}
+.back-home:hover {
+    background-color: #249691;
+}
+.education-container {
+    max-width: 1200px;
+    margin: 80px auto;
+    padding: 20px;
+}
+h1 {
+    color: #2c3e50;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+/* New Styles */
+.education-header {
+    text-align: center;
+    margin-bottom: 40px;
+    padding: 20px;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.education-header h1 {
+    color: #2c3e50;
+    margin-bottom: 15px;
+}
+
+.education-header p {
+    color: #666;
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+.education-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-bottom: 50px;
+}
+
+.education-card {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.education-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+.education-card-img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.education-card-content {
+    padding: 20px;
+}
+
+.education-card h3 {
+    color: #2c3e50;
+    margin-bottom: 10px;
+}
+
+.education-card p {
+    color: #666;
+    margin-bottom: 15px;
+    line-height: 1.5;
+}
+
+.education-card-link {
+    display: inline-block;
+    padding: 8px 15px;
+    background-color: #2bb4af;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.education-card-link:hover {
+    background-color: #249691;
+}
+
+.education-tabs {
+    margin-bottom: 40px;
+}
+
+.tab-buttons {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+.tab-button {
+    padding: 10px 20px;
+    background-color: #f8f9fa;
+    border: none;
+    border-radius: 5px;
+    margin: 0 5px 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.tab-button.active {
+    background-color: #2bb4af;
+    color: white;
+}
+
+.tab-content {
+    display: none;
+    animation: fadeIn 0.5s ease;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.health-tips {
+    background-color: #f8f9fa;
+    padding: 30px;
+    border-radius: 10px;
+    margin-bottom: 40px;
+}
+
+.health-tips h2 {
+    color: #2c3e50;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.tips-list {
+    list-style: none;
+    padding: 0;
+}
+
+.tip-item {
+    padding: 15px;
+    margin-bottom: 15px;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease;
+}
+
+.tip-item:hover {
+    transform: translateX(10px);
+}
+
+.tip-item h4 {
+    color: #2bb4af;
+    margin-bottom: 5px;
+}
+
+.tip-item p {
+    color: #666;
+    margin: 0;
+}
+
+.newsletter {
+    background: linear-gradient(135deg, #2bb4af 0%, #249691 100%);
+    padding: 40px;
+    border-radius: 10px;
+    color: white;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.newsletter h2 {
+    margin-bottom: 20px;
+}
+
+.newsletter p {
+    margin-bottom: 20px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.newsletter-form {
+    display: flex;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.newsletter-input {
+    flex: 1;
+    padding: 12px 15px;
+    border: none;
+    border-radius: 5px 0 0 5px;
+    font-size: 16px;
+}
+
+.newsletter-button {
+    padding: 12px 20px;
+    background-color: #2c3e50;
+    color: white;
+    border: none;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.newsletter-button:hover {
+    background-color: #34495e;
+}
+
+.video-section {
+    margin-bottom: 40px;
+}
+
+.video-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.video-card {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.video-placeholder {
+    width: 100%;
+    height: 200px;
+    background-color: #f8f9fa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #666;
+    font-size: 24px;
+}
+
+.video-card-content {
+    padding: 20px;
+}
+
+.video-card h3 {
+    color: #2c3e50;
+    margin-bottom: 10px;
+}
+
+.video-card p {
+    color: #666;
+    margin-bottom: 15px;
+}
+
+.video-card-link {
+    display: inline-block;
+    padding: 8px 15px;
+    background-color: #2bb4af;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.video-card-link:hover {
+    background-color: #249691;
+}
+
+.quiz-section {
+    background-color: #f8f9fa;
+    padding: 30px;
+    border-radius: 10px;
+    margin-bottom: 40px;
+}
+
+.quiz-section h2 {
+    color: #2c3e50;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.quiz-container {
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.quiz-question {
+    margin-bottom: 20px;
+}
+
+.quiz-question h3 {
+    color: #2c3e50;
+    margin-bottom: 15px;
+}
+
+.quiz-options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.quiz-option {
+    padding: 12px 15px;
+    background-color: #f8f9fa;
+    border: 2px solid transparent;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.quiz-option:hover {
+    background-color: #e9ecef;
+}
+
+.quiz-option.selected {
+    background-color: #e3f2fd;
+    border-color: #2bb4af;
+}
+
+.quiz-option.correct {
+    background-color: #d4edda;
+    border-color: #28a745;
+}
+
+.quiz-option.incorrect {
+    background-color: #f8d7da;
+    border-color: #dc3545;
+}
+
+.quiz-button {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    background-color: #2bb4af;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 20px;
+}
+
+.quiz-button:hover {
+    background-color: #249691;
+}
+
+.quiz-result {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+@media (max-width: 768px) {
+    .education-grid, .video-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .newsletter-form {
+        flex-direction: column;
+    }
+    
+    .newsletter-input {
+        border-radius: 5px;
+        margin-bottom: 10px;
+    }
+    
+    .newsletter-button {
+        border-radius: 5px;
+    }
+}
+   </style>
+</head>
+<body>
+    <a href="HOME.HTML" class="back-home">← Back to Home</a>
+    
+    <div class="education-container">
+        <div class="education-header">
+            <h1>Health Education Resources</h1>
+            <p>Empowering you with knowledge to make informed decisions about your health. Explore our comprehensive educational resources, health tips, and interactive content.</p>
+        </div>
+        
+        <div class="education-tabs">
+            <div class="tab-buttons">
+                <button class="tab-button active" data-tab="articles">Articles</button>
+                <button class="tab-button" data-tab="videos">Videos</button>
+                <button class="tab-button" data-tab="tips">Health Tips</button>
+                <button class="tab-button" data-tab="quiz">Health Quiz</button>
+            </div>
+            
+            <div class="tab-content active" id="articles">
+                <div class="education-grid">
+                    <div class="education-card">
+                        <img src="https://img.freepik.com/free-photo/indian-doctor-teaching-medical-students_1157-48146.jpg" alt="Understanding Diabetes" class="education-card-img">
+                        <div class="education-card-content">
+                            <h3>Understanding Diabetes</h3>
+                            <p>Learn about the different types of diabetes, symptoms, risk factors, and management strategies to lead a healthy life.</p>
+                            <a href="#" class="education-card-link">Read More</a>
+                        </div>
+                    </div>
+                    
+                    <div class="education-card">
+                        <img src="https://img.freepik.com/free-photo/indian-doctor-consulting-patient-clinic_1157-48145.jpg" alt="Heart Health" class="education-card-img">
+                        <div class="education-card-content">
+                            <h3>Heart Health Essentials</h3>
+                            <p>Discover ways to maintain a healthy heart through proper diet, exercise, and lifestyle changes to prevent cardiovascular diseases.</p>
+                            <a href="#" class="education-card-link">Read More</a>
+                        </div>
+                    </div>
+                    
+                    <div class="education-card">
+                        <img src="https://img.freepik.com/free-photo/indian-medical-team-modern-hospital_1157-48149.jpg" alt="Mental Wellness" class="education-card-img">
+                        <div class="education-card-content">
+                            <h3>Mental Wellness Guide</h3>
+                            <p>Explore strategies for maintaining mental health, managing stress, and recognizing signs of common mental health conditions.</p>
+                            <a href="#" class="education-card-link">Read More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="tab-content" id="videos">
+                <div class="video-section">
+                    <div class="video-grid">
+                        <div class="video-card">
+                            <div class="video-placeholder">Video Coming Soon</div>
+                            <div class="video-card-content">
+                                <h3>Healthy Eating Habits</h3>
+                                <p>Learn about balanced nutrition and how to make healthier food choices for your overall well-being.</p>
+                                <a href="#" class="video-card-link">Watch Now</a>
+                            </div>
+                        </div>
+                        
+                        <div class="video-card">
+                            <div class="video-placeholder">Video Coming Soon</div>
+                            <div class="video-card-content">
+                                <h3>Exercise for Beginners</h3>
+                                <p>Simple exercises and workout routines for beginners to improve fitness and maintain a healthy lifestyle.</p>
+                                <a href="#" class="video-card-link">Watch Now</a>
+                            </div>
+                        </div>
+                        
+                        <div class="video-card">
+                            <div class="video-placeholder">Video Coming Soon</div>
+                            <div class="video-card-content">
+                                <h3>Meditation Techniques</h3>
+                                <p>Basic meditation techniques to reduce stress, improve focus, and enhance your mental well-being.</p>
+                                <a href="#" class="video-card-link">Watch Now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="tab-content" id="tips">
+                <div class="health-tips">
+                    <h2>Daily Health Tips</h2>
+                    <ul class="tips-list">
+                        <li class="tip-item">
+                            <h4>Stay Hydrated</h4>
+                            <p>Drink at least 8 glasses of water daily to maintain proper hydration and support overall health.</p>
+                        </li>
+                        <li class="tip-item">
+                            <h4>Get Adequate Sleep</h4>
+                            <p>Aim for 7-9 hours of quality sleep each night to support immune function and mental clarity.</p>
+                        </li>
+                        <li class="tip-item">
+                            <h4>Practice Mindful Eating</h4>
+                            <p>Pay attention to your food, eat slowly, and listen to your body's hunger and fullness cues.</p>
+                        </li>
+                        <li class="tip-item">
+                            <h4>Take Regular Breaks</h4>
+                            <p>If you sit for long periods, take short breaks every hour to stretch and move around.</p>
+                        </li>
+                        <li class="tip-item">
+                            <h4>Maintain Social Connections</h4>
+                            <p>Regular social interaction can improve mental health and reduce the risk of depression.</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="tab-content" id="quiz">
+                <div class="quiz-section">
+                    <h2>Test Your Health Knowledge</h2>
+                    <div class="quiz-container">
+                        <div class="quiz-question">
+                            <h3>1. Which of the following is a key component of a healthy diet?</h3>
+                            <div class="quiz-options">
+                                <div class="quiz-option" data-correct="true">Fruits and vegetables</div>
+                                <div class="quiz-option">Processed foods</div>
+                                <div class="quiz-option">Sugary drinks</div>
+                                <div class="quiz-option">Fast food</div>
+                            </div>
+                        </div>
+                        
+                        <div class="quiz-question">
+                            <h3>2. How many minutes of moderate exercise is recommended for adults per week?</h3>
+                            <div class="quiz-options">
+                                <div class="quiz-option">30 minutes</div>
+                                <div class="quiz-option" data-correct="true">150 minutes</div>
+                                <div class="quiz-option">60 minutes</div>
+                                <div class="quiz-option">300 minutes</div>
+                            </div>
+                        </div>
+                        
+                        <div class="quiz-question">
+                            <h3>3. Which of the following is a sign of dehydration?</h3>
+                            <div class="quiz-options">
+                                <div class="quiz-option">Excessive sweating</div>
+                                <div class="quiz-option" data-correct="true">Dark yellow urine</div>
+                                <div class="quiz-option">Increased appetite</div>
+                                <div class="quiz-option">High energy levels</div>
+                            </div>
+                        </div>
+                        
+                        <button class="quiz-button" id="check-answers">Check Answers</button>
+                        <div class="quiz-result" id="quiz-result"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="newsletter">
+            <h2>Subscribe to Our Health Newsletter</h2>
+            <p>Stay updated with the latest health tips, medical news, and educational resources delivered straight to your inbox.</p>
+            <form class="newsletter-form" id="newsletter-form">
+                <input type="email" class="newsletter-input" placeholder="Enter your email address" required>
+                <button type="submit" class="newsletter-button">Subscribe</button>
+            </form>
+        </div>
+    </div>
+    
+    <script>
+        // Tab functionality
+        const tabButtons = document.querySelectorAll('.tab-button');
+        const tabContents = document.querySelectorAll('.tab-content');
+        
+        tabButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons and contents
+                tabButtons.forEach(btn => btn.classList.remove('active'));
+                tabContents.forEach(content => content.classList.remove('active'));
+                
+                // Add active class to clicked button and corresponding content
+                button.classList.add('active');
+                const tabId = button.getAttribute('data-tab');
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+        
+        // Quiz functionality
+        const quizOptions = document.querySelectorAll('.quiz-option');
+        const checkAnswersButton = document.getElementById('check-answers');
+        const quizResult = document.getElementById('quiz-result');
+        
+        // Allow selecting one option per question
+        quizOptions.forEach(option => {
+            option.addEventListener('click', () => {
+                // Remove selected class from siblings
+                const siblings = option.parentElement.querySelectorAll('.quiz-option');
+                siblings.forEach(sibling => sibling.classList.remove('selected'));
+                
+                // Add selected class to clicked option
+                option.classList.add('selected');
+            });
+        });
+        
+        // Check answers when button is clicked
+        checkAnswersButton.addEventListener('click', () => {
+            let correctCount = 0;
+            let totalQuestions = document.querySelectorAll('.quiz-question').length;
+            
+            // Check each question
+            document.querySelectorAll('.quiz-question').forEach(question => {
+                const selectedOption = question.querySelector('.quiz-option.selected');
+                
+                if (selectedOption) {
+                    // Remove previous correct/incorrect classes
+                    question.querySelectorAll('.quiz-option').forEach(option => {
+                        option.classList.remove('correct', 'incorrect');
+                    });
+                    
+                    // Check if selected option is correct
+                    if (selectedOption.hasAttribute('data-correct')) {
+                        selectedOption.classList.add('correct');
+                        correctCount++;
+                    } else {
+                        selectedOption.classList.add('incorrect');
+                        
+                        // Highlight the correct answer
+                        const correctOption = question.querySelector('.quiz-option[data-correct="true"]');
+                        correctOption.classList.add('correct');
+                    }
+                }
+            });
+            
+            // Display result
+            const percentage = Math.round((correctCount / totalQuestions) * 100);
+            quizResult.textContent = `You scored ${correctCount} out of ${totalQuestions} (${percentage}%)`;
+            
+            // Disable the check answers button
+            checkAnswersButton.disabled = true;
+            checkAnswersButton.textContent = 'Answers Checked';
+        });
+        
+        // Newsletter form submission
+        const newsletterForm = document.getElementById('newsletter-form');
+        
+        newsletterForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const emailInput = newsletterForm.querySelector('.newsletter-input');
+            const email = emailInput.value;
+            
+            // Simple validation
+            if (email && email.includes('@')) {
+                alert('Thank you for subscribing to our health newsletter!');
+                emailInput.value = '';
+            } else {
+                alert('Please enter a valid email address.');
+            }
+        });
+        
+        // Add animation to education cards on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = 1;
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        });
+        
+        document.querySelectorAll('.education-card, .video-card, .tip-item').forEach(element => {
+            element.style.opacity = 0;
+            element.style.transform = 'translateY(20px)';
+            element.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            observer.observe(element);
+        });
+    </script>
+</body>
+</html> 

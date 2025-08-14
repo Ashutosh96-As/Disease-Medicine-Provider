@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Disease Medicine Provider</title>
+    <link rel="stylesheet" href="Style.css">
+    
+    <style>
+    .about-container {
+    max-width: 1000px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+.about-section {
+    margin-bottom: 3rem;
+}
+.about-section h2 {
+    color: #4CAF50;
+    margin-bottom: 1rem;
+    border-bottom: 2px solid #4CAF50;
+    padding-bottom: 0.5rem;
+}
+.mission-vision {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+.mission, .vision {
+    flex: 1;
+    padding: 1.5rem;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+.mission h3, .vision h3 {
+    color: #4CAF50;
+    margin-bottom: 1rem;
+}
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 2rem;
+}
+.team-member {
+    text-align: center;
+    padding: 1.5rem;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+.team-member:hover {
+    transform: translateY(-5px);
+}
+.team-member img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin-bottom: 1rem;
+    object-fit: cover;
+}
+.team-member h3 {
+    margin-bottom: 0.5rem;
+}
+.team-member p {
+    color: #666;
+    margin-bottom: 1rem;
+}
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+.social-links a {
+    color: #4CAF50;
+    text-decoration: none;
+}
+.social-links a:hover {
+    text-decoration: underline;
+}
+.timeline {
+    position: relative;
+    max-width: 800px;
+    margin: 2rem auto;
+}
+.timeline::after {
+    content: '';
+    position: absolute;
+    width: 2px;
+    background-color: #4CAF50;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    margin-left: -1px;
+}
+.timeline-item {
+    padding: 10px 40px;
+    position: relative;
+    width: 50%;
+    box-sizing: border-box;
+}
+.timeline-item::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: #4CAF50;
+    border-radius: 50%;
+    top: 15px;
+    z-index: 1;
+}
+.left {
+    left: 0;
+}
+.right {
+    left: 50%;
+}
+.left::after {
+    right: -10px;
+}
+.right::after {
+    left: -10px;
+}
+.timeline-content {
+    padding: 1rem;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+.timeline-content h3 {
+    margin-bottom: 0.5rem;
+}
+.timeline-content p {
+    margin-bottom: 0.5rem;
+}
+.timeline-year {
+    font-weight: bold;
+    color: #4CAF50;
+}
+.story-content {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    margin: 2rem 0;
+}
+.story-image {
+    flex: 1;
+}
+.story-image img {
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+.story-text {
+    flex: 1;
+}
+.achievement-counter {
+    font-size: 2.5rem;
+    color: #4CAF50;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+.achievement-label {
+    color: #666;
+}
+.achievements {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+    text-align: center;
+}
+.achievement-item {
+    padding: 1.5rem;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+.achievement-item:hover {
+    transform: translateY(-5px);
+}
+.team-member {
+    position: relative;
+    overflow: hidden;
+}
+.team-member-overlay {
+    position: absolute;
+    bottom: -100%;
+    left: 0;
+    right: 0;
+    background: rgba(76, 175, 80, 0.9);
+    color: white;
+    padding: 1rem;
+    transition: bottom 0.3s ease;
+}
+.team-member:hover .team-member-overlay {
+    bottom: 0;
+}
+.social-links a {
+    color: white;
+    margin: 0 0.5rem;
+    font-size: 1.2rem;
+}
+/* Add Back to Home button styles */
+.back-to-home {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 30px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    z-index: 1000;
+}
+
+.back-to-home:hover {
+    background: #45a049;
+    transform: translateX(-5px);
+}
+
+.back-to-home::before {
+    content: '←';
+    font-size: 1.2em;
+}
+
+@media (max-width: 768px) {
+    .back-to-home {
+        top: 10px;
+        left: 10px;
+        padding: 8px 15px;
+        font-size: 0.9em;
+    }
+}
+    </style>
+</head>
+<body>
+    <a href="HOME.HTML" class="back-to-home">Back to Home</a>
+    <header>
+        <h1>Disease Medicine Provider</h1>
+    </header>
+    <nav>
+        <a href="HOME.HTML">Home</a>
+        <a href="about.html">About Us</a>
+        <a href="services.html">Services</a>
+        <a href="testimonials.html">Testimonials</a>
+        <a href="contact.html">Contact us</a>
+        <a href="login.html" target="_blank">Login</a>
+        <a href="signup.html" target="_blank">Signup</a>
+    </nav>
+
+    <div class="about-container">
+        <div class="about-section">
+            <h2>Our Story</h2>
+            <div class="story-content">
+                <div class="story-image">
+                    <img src="https://img.freepik.com/free-photo/medical-banner-with-doctor-stethoscope_23-2149611193.jpg" alt="Our Journey">
+                </div>
+                <div class="story-text">
+                    <p>Disease Medicine Provider was founded in 2010 with a simple mission: to make quality healthcare accessible to everyone. What started as a small local pharmacy has grown into a comprehensive healthcare provider serving thousands of patients across the country.</p>
+                    <p>Our journey began when our founder, Dr. James Wilson, recognized the challenges patients faced in accessing prescribed medications. He envisioned a solution that would bridge the gap between healthcare providers and patients, ensuring timely delivery of medicines and expert consultation services.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="about-section">
+            <h2>Our Mission & Vision</h2>
+            <div class="mission-vision">
+                <div class="mission">
+                    <h3>Our Mission</h3>
+                    <p>To provide high-quality medicines and healthcare services that improve the well-being of our patients, delivered with compassion, integrity, and excellence.</p>
+                </div>
+                <div class="vision">
+                    <h3>Our Vision</h3>
+                    <p>To be the most trusted healthcare partner, revolutionizing the way people access medicines and healthcare services, making quality healthcare accessible to all.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="about-section">
+            <h2>Our Journey</h2>
+            <div class="timeline">
+                <div class="timeline-item left">
+                    <div class="timeline-content">
+                        <span class="timeline-year">2010</span>
+                        <h3>Foundation</h3>
+                        <p>Disease Medicine Provider was established as a local pharmacy.</p>
+                    </div>
+                </div>
+                <div class="timeline-item right">
+                    <div class="timeline-content">
+                        <span class="timeline-year">2013</span>
+                        <h3>Expansion</h3>
+                        <p>Opened our first branch in a neighboring city.</p>
+                    </div>
+                </div>
+                <div class="timeline-item left">
+                    <div class="timeline-content">
+                        <span class="timeline-year">2015</span>
+                        <h3>Online Platform</h3>
+                        <p>Launched our online platform for medicine delivery.</p>
+                    </div>
+                </div>
+                <div class="timeline-item right">
+                    <div class="timeline-content">
+                        <span class="timeline-year">2017</span>
+                        <h3>Doctor Consultation</h3>
+                        <p>Introduced online doctor consultation services.</p>
+                    </div>
+                </div>
+                <div class="timeline-item left">
+                    <div class="timeline-content">
+                        <span class="timeline-year">2020</span>
+                        <h3>Mobile App</h3>
+                        <p>Launched our mobile app for easier access to services.</p>
+                    </div>
+                </div>
+                <div class="timeline-item right">
+                    <div class="timeline-content">
+                        <span class="timeline-year">2023</span>
+                        <h3>National Coverage</h3>
+                        <p>Expanded our services to cover the entire country.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="about-section">
+            <h2>Our Team</h2>
+            <div class="team-grid">
+                <div class="team-member">
+                    <img src="https://via.placeholder.com/150" alt="Dr. James Wilson">
+                    <h3>Dr. James Wilson</h3>
+                    <p>Founder & CEO</p>
+                    <div class="social-links">
+                        <a href="#" target="_blank">LinkedIn</a>
+                        <a href="#" target="_blank">Twitter</a>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <img src="https://via.placeholder.com/150" alt="Sarah Johnson">
+                    <h3>Sarah Johnson</h3>
+                    <p>Operations Director</p>
+                    <div class="social-links">
+                        <a href="#" target="_blank">LinkedIn</a>
+                        <a href="#" target="_blank">Twitter</a>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <img src="https://via.placeholder.com/150" alt="Michael Chen">
+                    <h3>Michael Chen</h3>
+                    <p>Head of Pharmacy</p>
+                    <div class="social-links">
+                        <a href="#" target="_blank">LinkedIn</a>
+                        <a href="#" target="_blank">Twitter</a>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <img src="https://via.placeholder.com/150" alt="Emily Brown">
+                    <h3>Emily Brown</h3>
+                    <p>Customer Service Manager</p>
+                    <div class="social-links">
+                        <a href="#" target="_blank">LinkedIn</a>
+                        <a href="#" target="_blank">Twitter</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="about-section">
+            <h2>Our Values</h2>
+            <div class="mission-vision">
+                <div class="mission">
+                    <h3>Quality</h3>
+                    <p>We are committed to providing only the highest quality medicines and healthcare services.</p>
+                </div>
+                <div class="vision">
+                    <h3>Integrity</h3>
+                    <p>We operate with honesty, transparency, and ethical practices in all our dealings.</p>
+                </div>
+            </div>
+            <div class="mission-vision">
+                <div class="mission">
+                    <h3>Compassion</h3>
+                    <p>We treat each patient with care, empathy, and respect, understanding their unique needs.</p>
+                </div>
+                <div class="vision">
+                    <h3>Innovation</h3>
+                    <p>We continuously seek new ways to improve our services and enhance patient experience.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="achievements">
+            <div class="achievement-item">
+                <div class="achievement-counter">15+</div>
+                <div class="achievement-label">Years of Excellence</div>
+            </div>
+            <div class="achievement-item">
+                <div class="achievement-counter">50K+</div>
+                <div class="achievement-label">Happy Patients</div>
+            </div>
+            <div class="achievement-item">
+                <div class="achievement-counter">100+</div>
+                <div class="achievement-label">Expert Doctors</div>
+            </div>
+            <div class="achievement-item">
+                <div class="achievement-counter">24/7</div>
+                <div class="achievement-label">Support Available</div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Disease Medicine Provider | All Rights Reserved</p>
+    </footer>
+
+    <script>
+        // Add animation to team members on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = 1;
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        });
+
+        document.querySelectorAll('.team-member').forEach(member => {
+            member.style.opacity = 0;
+            member.style.transform = 'translateY(20px)';
+            member.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            observer.observe(member);
+        });
+    </script>
+</body>
+</html> 

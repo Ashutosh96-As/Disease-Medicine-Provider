@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Consultation - Disease Medicine Provider</title>
+    <link rel="stylesheet" href="Style.css">
+    
+
+<style>
+    .consultation-container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+.form-group {
+    margin-bottom: 1rem;
+}
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+}
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+.form-group textarea {
+    height: 100px;
+    resize: vertical;
+}
+.submit-btn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+}
+.submit-btn:hover {
+    background-color: #45a049;
+}
+.specialty-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+.specialty-btn {
+    padding: 0.5rem 1rem;
+    background-color: #f0f0f0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.specialty-btn.active {
+    background-color: #4CAF50;
+    color: white;
+}
+.doctors-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+.doctor-card {
+    border: 1px solid #ddd;
+    padding: 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+.doctor-card:hover {
+    transform: translateY(-5px);
+}
+.doctor-card.selected {
+    border-color: #4CAF50;
+    background-color: #f0f9f0;
+}
+.back-home {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    padding: 10px 20px;
+    background-color: #2c3e50;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    z-index: 1000;
+    transition: all 0.3s ease;
+}
+
+.back-home:hover {
+    background-color: #34495e;
+    transform: translateY(-2px);
+}
+</style>
+</head>
+<body>
+    <a href="HOME.HTML" class="back-home">← Back to Home</a>
+    <header>
+        <h1>Disease Medicine Provider</h1>
+    </header>
+    <nav>
+        <a href="HOME.HTML">Home</a>
+        <a href="about.html">About Us</a>
+        <a href="services.html">Services</a>
+        <a href="testimonials.html">Testimonials</a>
+        <a href="contact.html">Contact us</a>
+        <a href="login.html" target="_blank">Login</a>
+        <a href="signup.html" target="_blank">Signup</a>
+    </nav>
+
+    <div class="consultation-container">
+        <h2>Online Consultation</h2>
+        
+        <div class="specialty-filters">
+            <button class="specialty-btn active" data-specialty="all">All Specialties</button>
+            <button class="specialty-btn" data-specialty="general">General Medicine</button>
+            <button class="specialty-btn" data-specialty="cardiology">Cardiology</button>
+            <button class="specialty-btn" data-specialty="pediatrics">Pediatrics</button>
+            <button class="specialty-btn" data-specialty="dermatology">Dermatology</button>
+        </div>
+        
+        <div class="doctors-grid" id="doctorsGrid">
+            <!-- Doctors will be loaded dynamically -->
+        </div>
+
+        <form id="consultationForm" onsubmit="return handleConsultation(event)">
+            <div class="form-group">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" name="phone" required>
+            </div>
+            <div class="form-group">
+                <label for="consultationType">Consultation Type</label>
+                <select id="consultationType" name="consultationType" required>
+                    <option value="">Select type</option>
+                    <option value="video">Video Call</option>
+                    <option value="chat">Chat</option>
+                    <option value="voice">Voice Call</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="date">Preferred Date</label>
+                <input type="date" id="date" name="date" required>
+            </div>
+            <div class="form-group">
+                <label for="time">Preferred Time</label>
+                <select id="time" name="time" required>
+                    <option value="">Select time</option>
+                    <option value="09:00">9:00 AM</option>
+                    <option value="10:00">10:00 AM</option>
+                    <option value="11:00">11:00 AM</option>
+                    <option value="14:00">2:00 PM</option>
+                    <option value="15:00">3:00 PM</option>
+                    <option value="16:00">4:00 PM</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="symptoms">Symptoms/Health Concerns</label>
+                <textarea id="symptoms" name="symptoms" required></textarea>
+            </div>
+            <button type="submit" class="submit-btn">Schedule Consultation</button>
+        </form>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Disease Medicine Provider | All Rights Reserved</p>
+    </footer>
+
+    <script>
+        // Doctor data
+        const doctors = [
+            { id: 1, name: "Dr. Sarah Johnson", specialty: "general", experience: "15 years", rating: 4.8 },
+            { id: 2, name: "Dr. Michael Chen", specialty: "cardiology", experience: "12 years", rating: 4.9 },
+            { id: 3, name: "Dr. Emily Brown", specialty: "pediatrics", experience: "8 years", rating: 4.7 },
+            { id: 4, name: "Dr. James Wilson", specialty: "dermatology", experience: "10 years", rating: 4.6 },
+            { id: 5, name: "Dr. Lisa Patel", specialty: "general", experience: "7 years", rating: 4.5 },
+            { id: 6, name: "Dr. Robert Taylor", specialty: "cardiology", experience: "14 years", rating: 4.9 }
+        ];
+        
+        let selectedDoctorId = null;
+        
+        // Render doctors
+        function renderDoctors(specialty = 'all') {
+            const filteredDoctors = specialty === 'all' 
+                ? doctors 
+                : doctors.filter(doctor => doctor.specialty === specialty);
+                
+            const doctorsGrid = document.getElementById('doctorsGrid');
+            doctorsGrid.innerHTML = '';
+            
+            filteredDoctors.forEach(doctor => {
+                const doctorCard = document.createElement('div');
+                doctorCard.className = `doctor-card ${selectedDoctorId === doctor.id ? 'selected' : ''}`;
+                doctorCard.innerHTML = `
+                    <h3>${doctor.name}</h3>
+                    <p>Specialization: ${doctor.specialty.charAt(0).toUpperCase() + doctor.specialty.slice(1)}</p>
+                    <p>Experience: ${doctor.experience}</p>
+                    <p>Rating: ${doctor.rating}/5</p>
+                `;
+                doctorCard.addEventListener('click', () => selectDoctor(doctor.id));
+                doctorsGrid.appendChild(doctorCard);
+            });
+        }
+        
+        // Select doctor
+        function selectDoctor(doctorId) {
+            selectedDoctorId = doctorId;
+            renderDoctors(document.querySelector('.specialty-btn.active').dataset.specialty);
+        }
+        
+        // Filter by specialty
+        document.querySelectorAll('.specialty-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.specialty-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                renderDoctors(btn.dataset.specialty);
+            });
+        });
+        
+        // Handle consultation form submission
+        function handleConsultation(event) {
+            event.preventDefault();
+            
+            if (!selectedDoctorId) {
+                alert('Please select a doctor first');
+                return false;
+            }
+            
+            const formData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                consultationType: document.getElementById('consultationType').value,
+                date: document.getElementById('date').value,
+                time: document.getElementById('time').value,
+                symptoms: document.getElementById('symptoms').value,
+                doctorId: selectedDoctorId
+            };
+            
+            // Here you would typically send the form data to a server
+            alert('Consultation scheduled successfully! We will send you a confirmation email shortly.');
+            
+            // Clear the form
+            document.getElementById('consultationForm').reset();
+            selectedDoctorId = null;
+            renderDoctors();
+            
+            return false;
+        }
+        
+        // Set minimum date to today
+        const dateInput = document.getElementById('date');
+        const today = new Date().toISOString().split('T')[0];
+        dateInput.min = today;
+        
+        // Initial render
+        renderDoctors();
+    </script>
+</body>
+</html> 

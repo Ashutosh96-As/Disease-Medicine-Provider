@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Appointment - Disease Medicine Provider</title>
+    <link rel="stylesheet" href="Style.css">
+    
+    <style>
+       .appointment-container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+.form-group {
+    margin-bottom: 1rem;
+}
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+}
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+.form-group textarea {
+    height: 100px;
+    resize: vertical;
+}
+.submit-btn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+}
+.submit-btn:hover {
+    background-color: #45a049;
+}
+.doctors-list {
+    margin-top: 2rem;
+}
+.doctor-card {
+    border: 1px solid #ddd;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 4px;
+}
+.doctor-card h3 {
+    margin-bottom: 0.5rem;
+}
+.doctor-info {
+    color: #666;
+    margin-bottom: 0.5rem;
+}
+.back-home {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    padding: 10px 20px;
+    background-color: #2c3e50;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    z-index: 1000;
+    transition: all 0.3s ease;
+}
+
+.back-home:hover {
+    background-color: #34495e;
+    transform: translateY(-2px);
+}
+    </style>
+</head>
+<body>
+    <a href="HOME.HTML" class="back-home">← Back to Home</a>
+    <header>
+        <h1>Disease Medicine Provider</h1>
+    </header>
+    <nav>
+        <a href="HOME.HTML">Home</a>
+        <a href="about.html">About Us</a>
+        <a href="services.html">Services</a>
+        <a href="testimonials.html">Testimonials</a>
+        <a href="contact.html">Contact us</a>
+        <a href="login.html" target="_blank">Login</a>
+        <a href="signup.html" target="_blank">Signup</a>
+    </nav>
+
+    <div class="appointment-container">
+        <h2>Book a Doctor Appointment</h2>
+        
+        <div class="doctors-list">
+            <h3>Available Doctors</h3>
+            <div class="doctor-card">
+                <h3>Dr. Sarah Johnson</h3>
+                <p class="doctor-info">Specialization: General Medicine</p>
+                <p class="doctor-info">Experience: 15 years</p>
+            </div>
+            <div class="doctor-card">
+                <h3>Dr. Michael Chen</h3>
+                <p class="doctor-info">Specialization: Cardiology</p>
+                <p class="doctor-info">Experience: 12 years</p>
+            </div>
+            <div class="doctor-card">
+                <h3>Dr. Emily Brown</h3>
+                <p class="doctor-info">Specialization: Pediatrics</p>
+                <p class="doctor-info">Experience: 8 years</p>
+            </div>
+        </div>
+
+        <form id="appointmentForm" onsubmit="return handleAppointment(event)">
+            <div class="form-group">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" name="phone" required>
+            </div>
+            <div class="form-group">
+                <label for="doctor">Select Doctor</label>
+                <select id="doctor" name="doctor" required>
+                    <option value="">Choose a doctor</option>
+                    <option value="dr-johnson">Dr. Sarah Johnson - General Medicine</option>
+                    <option value="dr-chen">Dr. Michael Chen - Cardiology</option>
+                    <option value="dr-brown">Dr. Emily Brown - Pediatrics</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="date">Preferred Date</label>
+                <input type="date" id="date" name="date" required>
+            </div>
+            <div class="form-group">
+                <label for="time">Preferred Time</label>
+                <select id="time" name="time" required>
+                    <option value="">Select time</option>
+                    <option value="09:00">9:00 AM</option>
+                    <option value="10:00">10:00 AM</option>
+                    <option value="11:00">11:00 AM</option>
+                    <option value="14:00">2:00 PM</option>
+                    <option value="15:00">3:00 PM</option>
+                    <option value="16:00">4:00 PM</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="symptoms">Symptoms/Reason for Visit</label>
+                <textarea id="symptoms" name="symptoms" required></textarea>
+            </div>
+            <button type="submit" class="submit-btn">Book Appointment</button>
+        </form>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Disease Medicine Provider | All Rights Reserved</p>
+    </footer>
+
+    <script>
+        function handleAppointment(event) {
+            event.preventDefault();
+            
+            // Get form values
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const doctor = document.getElementById('doctor').value;
+            const date = document.getElementById('date').value;
+            const time = document.getElementById('time').value;
+            const symptoms = document.getElementById('symptoms').value;
+            
+            // Here you would typically send the appointment data to a server
+            alert('Appointment booked successfully! We will send you a confirmation email shortly.');
+            
+            // Clear the form
+            document.getElementById('appointmentForm').reset();
+            
+            return false;
+        }
+
+        // Set minimum date to today
+        const dateInput = document.getElementById('date');
+        const today = new Date().toISOString().split('T')[0];
+        dateInput.min = today;
+    </script>
+</body>
+</html> 
